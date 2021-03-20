@@ -68,3 +68,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+[craco配置](https://github.com/gsoft-inc/craco/blob/master/packages/craco/README.md#configuration)
+[wp-devServer](https://webpack.js.org/configuration/dev-server/#devserver)
