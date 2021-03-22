@@ -1,5 +1,4 @@
 const {when, whenDev, whenProd, whenTest, ESLINT_MODES, POSTCSS_MODES} = require("@craco/craco");
-const webpack = require('webpack');
 
 module.exports = {
     reactScriptsVersion: "react-scripts" /* (default value) */,
@@ -40,9 +39,7 @@ module.exports = {
     webpack: {
         alias: {},
         plugins: {
-            add: [
-                // new webpack.HotModuleReplacementPlugin(),
-            ], /* An array of plugins */
+            add: [], /* An array of plugins */
             remove: [],  /* An array of plugin constructor's names (i.e. "StyleLintPlugin", "ESLintWebpackPlugin" ) */
         },
         configure: (webpackConfig, {env, paths}) => {
@@ -60,8 +57,7 @@ module.exports = {
     },
     devServer: {
         port: 9090,
-        hot: true,
-        https: true,
+        hot: true,/* 开启热更新 */
         proxy: {
             '/user': {
                 target:'https://graph.qq.com',
@@ -73,12 +69,10 @@ module.exports = {
     plugins: [
         {
             plugin: {
-
                 overrideCracoConfig: ({cracoConfig, pluginOptions, context: {env, paths}}) => {
                     return cracoConfig;
                 },
                 overrideWebpackConfig: ({webpackConfig, cracoConfig, pluginOptions, context: {env, paths}}) => {
-                    console.log(env)
                     return webpackConfig;
                 },
                 overrideDevServerConfig: ({devServerConfig, cracoConfig, pluginOptions, context: {env, paths, proxy, allowedHost}}) => {
