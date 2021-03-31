@@ -1,24 +1,30 @@
 import './App.css';
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
-import {Button} from "antd";
+import {Menu,Button} from "antd";
 import {useEffect, useState, createContext, useContext, useReducer} from "react";
 import useRequest from "@ahooksjs/use-request";
+import ECharts from './components/ECharts'
 
 function App() {
     return (
         <Router>
             <div className="App">
-                <Link to="/">Home</Link>
-                <Link to="/About">About</Link>
-                <Link to="/Product">Product</Link>
-                <Link to="/AsyncContext">AsyncContext</Link>
-                <Link to="/AsyncReducer">AsyncReducer</Link>
+                    <Menu mode="horizontal">
+                        <Menu.Item><Link to="/">Home</Link></Menu.Item>
+                        <Menu.Item><Link to="/About">About</Link></Menu.Item>
+                        <Menu.Item><Link to="/Product">Product</Link></Menu.Item>
+                        <Menu.Item><Link to="/AsyncContext">AsyncContext</Link></Menu.Item>
+                        <Menu.Item><Link to="/AsyncReducer">AsyncReducer</Link></Menu.Item>
+                        <Menu.Item><Link to="/echarts">ECharts</Link></Menu.Item>
+                    </Menu>
+
                 <hr/>
                 <Route path="/" exact component={Home}/>
                 <Route path="/about" component={About}/>
                 <Route path="/product" component={Product}/>
                 <Route path="/AsyncContext" component={AsyncContext}/>
                 <Route path="/AsyncReducer" component={AsyncReducer}/>
+                <Route path="/echarts" component={ECharts}/>
             </div>
         </Router>
     );
