@@ -7,10 +7,10 @@ const option = {
     },
     tooltip: {},
     legend: {
-        data:['销量']
+        data: ['销量']
     },
     xAxis: {
-        data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+        data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
     },
     yAxis: {},
     series: [{
@@ -24,14 +24,14 @@ const ECharts = () => {
 
     let echartsRef = useRef()
 
-    useEcharts(echartsRef,option)
+    useEcharts(echartsRef, option)
 
     let echartsRef1 = useRef()
-    useEcharts(echartsRef1,option)
+    useEcharts(echartsRef1, option)
 
     return <>
-        <div style={{width: "400px", height: "400px"}}  ref={echartsRef} />
-        <div style={{width: "400px", height: "400px"}}  ref={echartsRef1} />
+        <div ref={echartsRef} style={{width: "400px", height: "400px"}}/>
+        <div ref={echartsRef1} style={{width: "100%", height: "400px"}}/>
     </>
 }
 

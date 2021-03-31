@@ -1,23 +1,22 @@
 import './App.css';
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
-import {Menu,Button} from "antd";
+import {Menu, Button} from "antd";
 import {useEffect, useState, createContext, useContext, useReducer} from "react";
 import useRequest from "@ahooksjs/use-request";
 import ECharts from './components/ECharts'
 
 function App() {
     return (
-        <Router>
+        <Router basename={'hooks'}>
             <div className="App">
-                    <Menu mode="horizontal">
-                        <Menu.Item><Link to="/">Home</Link></Menu.Item>
-                        <Menu.Item><Link to="/About">About</Link></Menu.Item>
-                        <Menu.Item><Link to="/Product">Product</Link></Menu.Item>
-                        <Menu.Item><Link to="/AsyncContext">AsyncContext</Link></Menu.Item>
-                        <Menu.Item><Link to="/AsyncReducer">AsyncReducer</Link></Menu.Item>
-                        <Menu.Item><Link to="/echarts">ECharts</Link></Menu.Item>
-                    </Menu>
-
+                <Menu mode="horizontal">
+                    <Menu.Item><Link to="/">Home</Link></Menu.Item>
+                    <Menu.Item><Link to="/About">About</Link></Menu.Item>
+                    <Menu.Item><Link to="/Product">Product</Link></Menu.Item>
+                    <Menu.Item><Link to="/AsyncContext">AsyncContext</Link></Menu.Item>
+                    <Menu.Item><Link to="/AsyncReducer">AsyncReducer</Link></Menu.Item>
+                    <Menu.Item><Link to="/echarts">ECharts</Link></Menu.Item>
+                </Menu>
                 <hr/>
                 <Route path="/" exact component={Home}/>
                 <Route path="/about" component={About}/>
@@ -118,27 +117,27 @@ const AsyncContext = () => {
     )
 }
 
-const calcReducer = (state, action)=>{
+const calcReducer = (state, action) => {
     console.log(state)
     switch (action.type) {
         case 'add' :
-            return {count: state.count +1}
+            return {count: state.count + 1}
         case 'sub' :
-            return {count: state.count -1}
+            return {count: state.count - 1}
         default:
             new Error()
     }
 }
 
-const AsyncReducer = ()=>{
+const AsyncReducer = () => {
 
-    let [state,dispatch] = useReducer(calcReducer, {count:0})
+    let [state, dispatch] = useReducer(calcReducer, {count: 0})
     console.log(state)
     return (
         <>
             <h1>{state.count}</h1>
-            <Button onClick={()=>dispatch({type:'add'})}>+1</Button>
-            <Button onClick={()=>dispatch({type:'sub'})}>-1</Button>
+            <Button onClick={() => dispatch({type: 'add'})}>+1</Button>
+            <Button onClick={() => dispatch({type: 'sub'})}>-1</Button>
         </>
     )
 }
