@@ -1,14 +1,14 @@
-import './App.css';
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import {Menu, Button} from "antd";
 import {useEffect, useState, createContext, useContext, useReducer} from "react";
-import useRequest from "@ahooksjs/use-request";
 import ECharts from './components/ECharts'
+import ProDashboard from "./components/Dashboard";
+import useRequest from "@ahooksjs/use-request";
 
 function App() {
     return (
         <Router basename={'hooks'}>
-            <div className="App">
+            <div style={{backgroundColor: '#f5f5f5',height:'800px'}}>
                 <Menu mode="horizontal">
                     <Menu.Item><Link to="/">Home</Link></Menu.Item>
                     <Menu.Item><Link to="/About">About</Link></Menu.Item>
@@ -16,6 +16,7 @@ function App() {
                     <Menu.Item><Link to="/AsyncContext">AsyncContext</Link></Menu.Item>
                     <Menu.Item><Link to="/AsyncReducer">AsyncReducer</Link></Menu.Item>
                     <Menu.Item><Link to="/echarts">ECharts</Link></Menu.Item>
+                    <Menu.Item><Link to="/dashboard">ProDashboard</Link></Menu.Item>
                 </Menu>
                 <hr/>
                 <Route path="/" exact component={Home}/>
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/AsyncContext" component={AsyncContext}/>
                 <Route path="/AsyncReducer" component={AsyncReducer}/>
                 <Route path="/echarts" component={ECharts}/>
+                <Route path="/dashboard" component={ProDashboard}/>
             </div>
         </Router>
     );

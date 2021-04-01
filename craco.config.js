@@ -1,4 +1,5 @@
 const {when, whenDev, whenProd, whenTest, ESLINT_MODES, POSTCSS_MODES} = require("@craco/craco");
+const CracoLessPlugin = require('craco-less');
 
 module.exports = {
     reactScriptsVersion: "react-scripts" /* (default value) */,
@@ -31,7 +32,9 @@ module.exports = {
     },
     babel: {
         presets: [],
-        plugins: [],
+        plugins: [
+            ["@babel/plugin-proposal-decorators", { legacy: true }]
+        ],
         loaderOptions: (babelLoaderOptions, {env, paths}) => {
             return babelLoaderOptions;
         }
@@ -56,7 +59,7 @@ module.exports = {
         }
     },
     devServer: {
-        port: 9090,
+        port: 9091,
         hot: true,/* 开启热更新 */
         proxy: {
             '/user': {
@@ -83,6 +86,18 @@ module.exports = {
                 },
             },
             options: {}
+        },
+        {
+            plugin: CracoLessPlugin,
+            options: {
+                lessLoaderOptions: {
+                    lessOptions: {
+                        // 修改主题色
+                        // modifyVars: { '@primary-color': '#1DA57A' },
+                        javascriptEnabled: true,
+                    },
+                },
+            },
         }
     ]
 };

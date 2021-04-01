@@ -3,15 +3,17 @@ import * as echarts from "echarts";
 
 const useEcharts = (echartsRef, option)=>{
     useEffect(() => {
-
-        let EchartsInstance = echarts.getInstanceByDom(echartsRef.current)
-        if (!EchartsInstance) {
-            EchartsInstance = echarts.init(echartsRef.current)
+        let EchartsInstance = null
+        if (echartsRef.current) {
+            EchartsInstance = echarts.getInstanceByDom(echartsRef.current)
+            if (!EchartsInstance) {
+                EchartsInstance = echarts.init(echartsRef.current)
+            }
+            EchartsInstance.setOption(option)
         }
-        EchartsInstance.setOption(option)
         return () => {
             EchartsInstance && EchartsInstance.dispose()
-        }
+        };
     },[option,echartsRef])
 
 }

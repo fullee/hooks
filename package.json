@@ -9,13 +9,17 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@ahooksjs/use-request": "^2.8.3",
+    "@ant-design/pro-card": "^1.11.6",
+    "@ant-design/pro-layout": "^6.16.0",
     "@craco/craco": "^6.1.1",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
+    "ahooks": "^2.10.0",
     "antd": "^4.14.0",
     "echarts": "^5.0.2",
+    "numeral": "^2.0.6",
+    "rc-resize-observer": "^1.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
@@ -41,6 +45,8 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.13.5",
+    "craco-less": "^1.17.1",
     "cross-env": "^7.0.3"
   }
 }
