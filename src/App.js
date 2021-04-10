@@ -1,16 +1,17 @@
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import {Menu, Button} from "antd";
-import {useEffect, useState, createContext, useContext, useReducer} from "react";
+import {useState, createContext, useContext, useReducer} from "react";
 import ECharts from './components/ECharts'
 import ProDashboard from "./components/Dashboard";
 import useRequest from "@ahooksjs/use-request";
+import Concept from "./concept";
 
 function App() {
     return (
         <Router basename={'hooks'}>
             <div style={{backgroundColor: '#f5f5f5',height:'800px'}}>
                 <Menu mode="horizontal">
-                    <Menu.Item><Link to="/">Home</Link></Menu.Item>
+                    <Menu.Item><Link to="/">Concept</Link></Menu.Item>
                     <Menu.Item><Link to="/About">About</Link></Menu.Item>
                     <Menu.Item><Link to="/Product">Product</Link></Menu.Item>
                     <Menu.Item><Link to="/AsyncContext">AsyncContext</Link></Menu.Item>
@@ -19,7 +20,7 @@ function App() {
                     <Menu.Item><Link to="/dashboard">ProDashboard</Link></Menu.Item>
                 </Menu>
                 <hr/>
-                <Route path="/" exact component={Home}/>
+                <Route path="/" exact component={Concept}/>
                 <Route path="/about" component={About}/>
                 <Route path="/product" component={Product}/>
                 <Route path="/AsyncContext" component={AsyncContext}/>
@@ -31,35 +32,6 @@ function App() {
     );
 }
 
-const Home = () => {
-
-    /*
-    * 刷新浏览器就能获取数据
-    * */
-
-    let [count, setCounter] = useState(0)
-    let [msg, setMsg] = useState('成功')
-    const {data, run} = useRequest({url: '/user/get_simple_userinfo'}, {
-        manual: true,
-        onSuccess(r, p) {
-            setMsg(data.msg)
-        }
-    })
-
-    useEffect(() => {
-        run()
-    }, [])// eslint-disable-line react-hooks/exhaustive-deps
-
-    return (
-        <div>
-            <h2>Home</h2>
-            <span>{count}</span>
-            <span>{msg}</span>
-            <Button type="primary" onClick={() => setCounter(count + 1)}>+1</Button>
-            {/*<Button type="primary" onClick={() => { run()}}>获取数据</Button>*/}
-        </div>
-    )
-}
 
 
 const About = () => {
