@@ -1,4 +1,5 @@
 import {Controlled,UnControlled} from "./controlled";
+import PromiseFeature from "./promise";
 
 const Concept = ()=>{
 
@@ -7,6 +8,7 @@ const Concept = ()=>{
             <h2>基础概念</h2>
             <Controlled />
             <UnControlled />
+            <PromiseFeature />
         </div>
     )
 }
