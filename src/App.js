@@ -1,15 +1,18 @@
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import {Menu, Button} from "antd";
-import {useState, createContext, useContext, useReducer} from "react";
+import {useState} from "react";
 import ECharts from './components/ECharts'
 import ProDashboard from "./components/Dashboard";
+import AsyncContext from "./hooks/Context"
+import AsyncReducer from "./hooks/Reducer"
 import useRequest from "@ahooksjs/use-request";
 import Concept from "./concept";
+import ContextAndReducer from "./hooks/ContextAndReducer";
 
 function App() {
     return (
         <Router basename={'hooks'}>
-            <div style={{backgroundColor: '#f5f5f5',height:'800px'}}>
+            <div style={{backgroundColor: '#f5f5f5', height: '800px'}}>
                 <Menu mode="horizontal">
                     <Menu.Item><Link to="/">Concept</Link></Menu.Item>
                     <Menu.Item><Link to="/About">About</Link></Menu.Item>
@@ -18,6 +21,7 @@ function App() {
                     <Menu.Item><Link to="/AsyncReducer">AsyncReducer</Link></Menu.Item>
                     <Menu.Item><Link to="/echarts">ECharts</Link></Menu.Item>
                     <Menu.Item><Link to="/dashboard">ProDashboard</Link></Menu.Item>
+                    <Menu.Item><Link to="/car">ContextAndReducer</Link></Menu.Item>
                 </Menu>
                 <hr/>
                 <Route path="/" exact component={Concept}/>
@@ -27,11 +31,11 @@ function App() {
                 <Route path="/AsyncReducer" component={AsyncReducer}/>
                 <Route path="/echarts" component={ECharts}/>
                 <Route path="/dashboard" component={ProDashboard}/>
+                <Route path="/car" component={ContextAndReducer}/>
             </div>
         </Router>
     );
 }
-
 
 
 const About = () => {
@@ -74,67 +78,6 @@ const Product = () => {
 }
 
 
-let Color = createContext({o1: '#FFFFFF'})
 
-const AsyncContext = () => {
-
-    let [o1, setColor] = useState('#FFFFFF')
-    // useReducer()
-
-    return (
-        <>
-            <Color.Provider value={{o1, setColor}}>
-                <ColorButton>HH</ColorButton>
-            </Color.Provider>
-            <ColorButton>HH</ColorButton>
-        </>
-    )
-}
-
-const calcReducer = (state, action) => {
-    console.log(state)
-    switch (action.type) {
-        case 'add' :
-            return {count: state.count + 1}
-        case 'sub' :
-            return {count: state.count - 1}
-        default:
-            new Error()
-    }
-}
-
-const AsyncReducer = () => {
-
-    let [state, dispatch] = useReducer(calcReducer, {count: 0})
-    console.log(state)
-    return (
-        <>
-            <h1>{state.count}</h1>
-            <Button onClick={() => dispatch({type: 'add'})}>+1</Button>
-            <Button onClick={() => dispatch({type: 'sub'})}>-1</Button>
-        </>
-    )
-}
-
-const ColorButton = (props) => {
-    let color = useContext(Color)
-    console.log(color)
-
-    const handleClick = () => {
-        console.log(color)
-        if (color) {
-            if (color.o1 === 'red') {
-                color.setColor('#FFFFFF');
-            } else {
-                color.setColor('red');
-            }
-        }
-
-    }
-
-    return (
-        <Button onClick={handleClick} style={{backgroundColor: color.o1}}>{props.children}</Button>
-    )
-}
 
 export default App;
