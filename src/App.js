@@ -1,6 +1,6 @@
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
-import {Menu, Button} from "antd";
-import {useState} from "react";
+import {Menu, Button, Progress} from "antd";
+import {useEffect, useState} from "react";
 import ECharts from './components/ECharts'
 import ProDashboard from "./components/Dashboard";
 import AsyncContext from "./hooks/Context"
@@ -52,6 +52,19 @@ const About = () => {
         }
     })
 
+    const [counter, setCounter] = useState(100)
+
+    useEffect(() => {
+        let i;
+        if (counter > 90) {
+            i = setTimeout(() => {
+                setCounter(counter - 1)
+                clearTimeout(i)
+            }, 1000)
+        }
+        return () => clearTimeout(i);
+    }, [counter])
+
     return (
         <div>
             <h2>Abloud</h2>
@@ -59,6 +72,8 @@ const About = () => {
             <Button type="primary" onClick={() => {
                 run()
             }}>获取数据</Button>
+
+            <Progress percent={counter}/>
         </div>
     )
 }
@@ -76,8 +91,6 @@ const Product = () => {
 
     return <div>暂无数据</div>;
 }
-
-
 
 
 export default App;
