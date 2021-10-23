@@ -5,6 +5,7 @@ import ECharts from './components/ECharts'
 import ProDashboard from "./components/Dashboard";
 import AsyncContext from "./hooks/Context"
 import AsyncReducer from "./hooks/Reducer"
+import {UnstatedNextApp} from "./hooks/unstatedNext"
 import useRequest from "@ahooksjs/use-request";
 import Concept from "./concept";
 import ContextAndReducer from "./hooks/ContextAndReducer";
@@ -22,6 +23,7 @@ function App() {
                     <Menu.Item><Link to="/echarts">ECharts</Link></Menu.Item>
                     <Menu.Item><Link to="/dashboard">ProDashboard</Link></Menu.Item>
                     <Menu.Item><Link to="/car">ContextAndReducer</Link></Menu.Item>
+                    <Menu.Item><Link to="/unstatedNext">unstatedNext</Link></Menu.Item>
                 </Menu>
                 <hr/>
                 <Route path="/" exact component={Concept}/>
@@ -32,6 +34,7 @@ function App() {
                 <Route path="/echarts" component={ECharts}/>
                 <Route path="/dashboard" component={ProDashboard}/>
                 <Route path="/car" component={ContextAndReducer}/>
+                <Route path="/unstatedNext" component={UnstatedNextApp}/>
             </div>
         </Router>
     );
